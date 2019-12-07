@@ -1,40 +1,66 @@
-class Item:
-    def __init__(self, name, description):
-        self.name = name
-        self.description = description
-        #Hint: the name should be one word for ease in parsing later.
+from abc import ABC, abstractmethod
 
 
-if __name__ == '__main__':
-    main()
+class Item(ABC):
+    def __init__(self):
+        pass
 
-item = {
-    'flashlight':
-    Item(
-        "Flashlight",
-        "50,000 hour LED flashlight system, you’ll be able to depend on a variable torch setting that can produce 500, 250, or 125 lumens of light"
-    ),
-    'multitool':
-    Item("Multitool", "9-in-1 multi-tool"),
-    'saw':
-    Item("Saw", "Compact, lightweight design is easy to pack"),
-    'knife':
-    Item("Knife", "Comes with 4 interchangeable blades"),
-    'gloves':
-    Item("Gloves", "Comes with 4 interchangeable blades"),
-    'shovel':
-    Item("Shovel", "Folding and Mini Shovels for your earth-moving needs."),
-    'water':
-    Item("Water", "12 oz of cold spring water"),
-    'kit':
-    Item("Kit", "Includes food, water, portable stove, first-aid and more"),
-    'rope':
-    Item("Rope", "20 foot nylon rope"),
-    'matches':
-    Item("Matches", "Standard issue safety matches"),
-    'tissues':
-    Item("Tissues", "Having a bad day? Here's some tissues."),
-}
+    @property
+    @abstractmethod
+    def name(self):
+        pass
+
+    def description(self):
+        pass
+
+    # Hint: the name should be one word for ease in parsing later.
+    def getName(self):
+        print("Item: \n{}".format(self.name))
+
+    def getDescription(self):
+        description = textwrap.fill(self.description, width=50)
+        print("{}: \n{}".format(self.name, description))
+
+
+class Flashlight(Item):
+    name = "Flashlight"
+    description = "500, 250, or 125 lumens of light"
+
+
+class Multitool(Item):
+    name = "Multitool"
+    description = "Multitool", "9-in-1 multi-tool"
+
+
+class Saw(Item):
+    name = "Saw"
+    description = "Compact, lightweight design is easy to pack"
+
+
+class Knife(Item):
+    name = "Knife"
+    description = "Comes with 4 interchangeable blades"
+
+
+class Gloves(Item):
+    name = "Gloves"
+    description = "Warm and cozy gloves won't harm the gold"
+
+
+class Shovel(Item):
+    name = "Shovel"
+    description = "Folding and Mini Shovels for your earth-moving needs."
+
+
+class Water(Item):
+    name = "Water"
+    description = "12 oz of cold spring water"
+
+
+if __name__ == "__main__":
+    items = {Flashlight()}
+    for item in items:
+        print(item.getName())
 
 # * Create a file called `item.py` and add an `Item` class in there.
 
